@@ -1,0 +1,48 @@
+---
+title: "Introduction"
+output: html_document
+---
+
+# Team Jet-lag/Topic:COVID-19 Impact
+
+Coronavirus is a hot topic this year, people around the world are hugely affected by it. As international students, we are facing many difficulties due to coronavirus. It affected our lives in so many ways. And we believed that others have been through the same thing like us. 
+
+Thus, we decided to engage in this field and create a website that could help people in this complex situation. We hope that our design could help people gain insights and reduce their stress, informing the public of the effect of COVID-19 on education, transportation, and work. We also want to go further by adding information about where you could get a covid test and which hospital you could go to for help. 
+
+
+
+## Summary Information
+
+
+
+
+## Table
+
+
+
+
+
+## Chart 1
+
+
+
+
+## Chart 2
+```{r include = FALSE}
+source("script/chart_2.R")
+```
+Since so many people have been unfortunately confirmed to be the carrier of COVID-19, the public went into panic at the beginning of this chaos. Numerous people are still wondering what the age group of people COVID-19 normally targets at, thus we hope to generate a chart to display the statistical information about the confirmed-cases age group, informing the public an potential correlation between age and the possibility of getting COVID-19.
+
+Below is a chart showing the percentage of confirmed cases by age group and gender:
+```{r}
+age_plot
+```
+
+Based on this chart, we can easily observe that most of COVID-19 cases are confirmed at the age group between `r most_age`, which takes up about `r format(most_percent * 100, digits = 1 )`% of the total confirmed population. On the other hand, the age group `least_age` has the smallest percentage of confirmed cases that takes up only about `format(least_percent * 100, digits = 1 )`%. From this chart, we can see that the majority of confirmed cases are founded in the age group above 30 years old, which might indicate that there is a positive correlation between the possibility of getting COVID-19 and the age of individuals.
+
+
+
+## Chart 3
+
+
+
