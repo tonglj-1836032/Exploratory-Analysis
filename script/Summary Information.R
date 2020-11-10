@@ -1,4 +1,4 @@
-covid <- read.csv("COVID-19_Case_Surveillance_Public_Use_Data.csv")
+covid <- read.csv("data/COVID-19_Case_Surveillance_Public_Use_Data.csv")
 
 # Organizing data
 covid_hosp <- covid %>%
