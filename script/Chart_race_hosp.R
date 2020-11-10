@@ -3,6 +3,7 @@ colnames(covid)
 library(tidyverse)
 library(dplyr)
 library(ggplot2)
+library(RColorBrewer)
 
 covid_hosp <- covid %>%
   filter(hosp_yn != "Unknown") %>%
@@ -32,8 +33,9 @@ hosp_y <- covid_hosp %>%
 
 race_hosp_chart <- ggplot(hosp_race_rate) +
   geom_col(
-    mapping = aes(x = Race.and.ethnicity..combined., y = y_rate),
-    fill = "#58B2DC"
+    mapping = aes(x = reorder(Race.and.ethnicity..combined., y_rate),
+                  y = y_rate),
+    fill = "#7B90D2"
   ) +
   coord_flip() +
   geom_hline(yintercept = hosp_y, color = "#656765") +
