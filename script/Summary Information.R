@@ -26,14 +26,17 @@ hosp_race_rate <- left_join(hosp_by_race_y, hosp_by_race_sum,
 # Summary List
 summary_info <- list()
 
+#The highest hospital treatment rate among different race & ethnicity groups
 summary_info$hosp_y_max <- hosp_race_rate %>%
   filter(y_rate == max(y_rate)) %>%
   pull(y_rate)
 
+##The lowest hospital treatment rate among different race & ethnicity groups
 summary_info$hosp_y_min <- hosp_race_rate %>%
   filter(y_rate == min(y_rate)) %>%
   pull(y_rate)
 
+##The overall hospital treatment rate among all patients
 summary_info$hosp_y <- covid_hosp %>%
   filter(hosp_yn == "Yes") %>%
   nrow() / nrow(covid_hosp)
