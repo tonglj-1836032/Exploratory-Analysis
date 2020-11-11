@@ -72,5 +72,16 @@ Based on this chart, we can easily observe that most of COVID-19 cases are confi
 
 ## Chart 3
 
+```{r include = FALSE}
+source("script/Covid-19 cases mortality rates for every sex in each age group.R")
+```
+Covid-19 is getting very serious in the United States, but fortunately, the death rate for this pandemic
+is relatively lower than other serious pandemic. But what kind of group has a higher mortality rate? Is
+ther any connection between gender and mortality rates or age and mortality rates? Thus, we would like to 
+use this graph to find out how gender influence the mortality rates ofpeople in each age group. 
+
+Based on the chart, we could see that 
+
+
 
 
