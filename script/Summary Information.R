@@ -41,8 +41,20 @@ summary_info$hosp_y <- covid_hosp %>%
   filter(hosp_yn == "Yes") %>%
   nrow() / nrow(covid_hosp)
 
+#The highest mortality rate for male
+r format(max_M,nsmall=2)
 
+#The age group with the highest mortality rate of male
+r format(max_M_A)
 
+#The highest mortality rate for female
+r format(max_F,nsmall=2)
+
+#The age group with the highest mortality rate of female
+r format(max_F_A)
+
+#The mortality rate for each group in each gender
+r format(res$Death_yn,nsmall=2)
 
 # Style check
 lint("Summary Information.R")
