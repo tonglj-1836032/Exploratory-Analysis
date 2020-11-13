@@ -85,12 +85,15 @@ between the possibility of getting COVID-19 and the age of individuals.
 ## Chart 3
 
 ```{r include = FALSE}
-source("script/Chart_3_Covid-19 cases mortality rates for every sex in each age group")
+source("script/Chart_3.R")
 ```
 Covid-19 is getting very serious in the United States, but fortunately, the death rate for this pandemic
 is relatively lower than another serious pandemic. But what kind of group has a higher mortality rate? Is
 there any connection between gender and mortality rates or age and mortality rates? Thus, we would like to
 use this graph to find out how gender influences the mortality rates of people in each age group.
+```{r}
+plot_line
+```
 
 Based on the chart, we could see that gender and age did have an impact on the mortality rates. We could see
 that the mortality rates are nearly 0% for people from 0-29 years old. However, the mortality rates keep 
