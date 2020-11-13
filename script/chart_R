@@ -77,12 +77,6 @@ plot_line<-ggplot(data = res, aes(x = Age_group, y = Death_yn, group=Sex,color =
     y = "Mortality rates (%)", x = " Age group"
   )
 
-`r format(max_M,nsmall=2)`男性最大的死亡率
-`r format(max_M_A)`男性最大的死亡率坐在的年龄组
-
-`r format(max_F,nsmall=2)`女性最大的死亡率
-`r format(max_F_A)`女性最大的死亡率坐在的年龄组
-
 
 
 
