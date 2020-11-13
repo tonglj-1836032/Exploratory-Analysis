@@ -45,6 +45,13 @@ race_hosp_chart <- ggplot(hosp_race_rate) +
       "Grey vertical line indicates overall hospital treatment rate"
   )
 
+hosp_y_max <- hosp_race_rate %>%
+  filter(y_rate == max(y_rate)) %>%
+  pull(y_rate)
+
+hosp_y_min <- hosp_race_rate %>%
+  filter(y_rate == min(y_rate)) %>%
+  pull(y_rate)
 
 # Style check
 library(lintr)
