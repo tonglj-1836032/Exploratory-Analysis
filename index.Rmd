@@ -20,7 +20,7 @@ Thus, we decided to engage in this field and create a website that could help pe
 ```{r table, echo = FALSE}
 library("knitr")
 source("script/aggregate_table.R")
-kable(relevant_dataset)
+relevant_dataset
 ```
 The original data was donloaded from [_U.S. Government's open data_](https://catalog.data.gov/dataset/covid-19-case-surveillance-public-use-data).
 The dataframe's column names (cdc_report_dt, Race and ethnicity (combined), hosp_yn, death_yn) has been modified to be more human readable. The dataframe has filtered out data that were not used (pos_spec_dt, onset_dt, icu_yn, medcond_yn). The dataframe was sorted in the ascending order of date and was grouped by current status.
