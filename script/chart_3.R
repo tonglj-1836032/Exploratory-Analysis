@@ -18,9 +18,16 @@
 library(ggplot2)
 library(tidyverse)
 library(dplyr)
-setwd("C:/Users/rong/Desktop/xuewenxi")
 
-COVID <- read.csv("COVID-19_Case_Surveillance_Public_Use_Data.csv",header=T)
+data_path <- file.path(
+  getwd(),
+  "Exploratory-Analysis",
+  "script",
+  "data",
+  "COVID-19_Case_Surveillance_Public_Use_Data.csv"
+  )
+COVID <- read.csv(data_path)
+
 feature=colnames(COVID)
 
 covid_death <- COVID %>%
