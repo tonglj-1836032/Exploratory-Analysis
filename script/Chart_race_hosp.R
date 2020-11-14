@@ -1,11 +1,17 @@
-covid <- read.csv("data/COVID-19_Case_Surveillance_Public_Use_Data.csv")
-colnames(covid)
+data_path <- file.path(
+  getwd(),
+  "data",
+  "COVID-19_Case_Surveillance_Public_Use_Data.csv"
+)
+COVID <- read.csv(data_path)
+
+colnames(COVID)
 library(tidyverse)
 library(dplyr)
 library(ggplot2)
 library(RColorBrewer)
 
-covid_hosp <- covid %>%
+covid_hosp <- COVID %>%
   filter(hosp_yn != "Unknown") %>%
   filter(hosp_yn != "Missing") %>%
   select(Race.and.ethnicity..combined., hosp_yn)
@@ -33,8 +39,10 @@ hosp_y <- covid_hosp %>%
 
 race_hosp_chart <- ggplot(hosp_race_rate) +
   geom_col(
-    mapping = aes(x = reorder(Race.and.ethnicity..combined., y_rate),
-                  y = y_rate),
+    mapping = aes(
+      x = reorder(Race.and.ethnicity..combined., y_rate),
+      y = y_rate
+    ),
     fill = "#7B90D2"
   ) +
   coord_flip() +
@@ -56,5 +64,5 @@ hosp_y_min <- hosp_race_rate %>%
 # Style check
 library(lintr)
 library(styler)
-lint("Chart_race_hosp.R")
-style_file("Chart_race_hosp.R")
+lint("script/Chart_race_hosp.R")
+style_file("script/Chart_race_hosp.R")

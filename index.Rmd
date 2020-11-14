@@ -3,6 +3,7 @@ title: "Introduction"
 output: html_document
 ---
 
+
 # Team Jet-lag/Topic:COVID-19 Impact
 
 Coronavirus is a hot topic this year, people around the world are hugely affected by it. As international students, we are facing many difficulties due to coronavirus. It affected our lives in so many ways. And we believed that others have been through the same thing like us. 
@@ -12,17 +13,42 @@ Thus, we decided to engage in this field and create a website that could help pe
 
 
 ## Summary Information
+```{r include = FALSE}
+source("script/Summary Information.R")
+```
+After looking at the data closely and generating aggregate summary of it, we 
+realized how much impact COVID-19 had made to our society. So many people from
+different ages groups and races are heavily affected by it. For example, hospital 
+treatment among all race and ethnicity 
+is `r format(summary_info$hosp_y * 100, digits = 1)`%, 
+which is rather low. This may be a sign indicating how compacted hospitals are and 
+the inability of hospitals for taking in all patients in need. Among all race and
+ethnicity groups, black and non-hispanic people have a hospital treatment rate 
+of `r format(summary_info$hosp_y_max * 100, digits = 1 )`%, which is the highest 
+among all race and ethnicity groups.
+
+As for the age factors, most of COVID-19 cases are confirmed 
+at the age group between `r summary_info$most_age`, which takes up about 
+`r format(summary_info$most_percent * 100, digits = 1 )`% of the total confirmed 
+population. 
+On the other hand, the age group `r r summary_info$least_age` has the smallest percentage of 
+confirmed cases that takes up only 
+about `r format(summary_info$least_percent * 100, digits = 1 )`%. Thus, we should 
+rise the 
+alter to be aware of the harsh situation and do everything possible to protect 
+ourselves form getting infected, avoiding risky behaviors during this sensitive 
+period of time.
 
 
 
 
 ## Table
-```{r table, echo = FALSE}
+```{r include = FALSE}
 library("knitr")
 source("script/aggregate_table.R")
 relevant_dataset
 ```
-The original data was donloaded from [_U.S. Government's open data_](https://catalog.data.gov/dataset/covid-19-case-surveillance-public-use-data).
+The original data was downloaded from [_U.S. Government's open data_](https://catalog.data.gov/dataset/covid-19-case-surveillance-public-use-data).
 The dataframe's column names (cdc_report_dt, Race and ethnicity (combined), hosp_yn, death_yn) has been modified to be more human readable. The dataframe has filtered out data that were not used (pos_spec_dt, onset_dt, icu_yn, medcond_yn). The dataframe was sorted in the ascending order of date and was grouped by current status.
 
 
@@ -35,25 +61,25 @@ Due to the sudden mass out broke of the pandemic, hospital resources became
 preciouses and not everyone had the opportunity to be treated by hospitals. We
 want see whether there is a difference in hospital treatment rate among people 
 from different race and ethnicity groups by looking into the general hospital
-treatment rate of COVID-19 in the U.S. and comapre it with the hospital 
+treatment rate of COVID-19 in the U.S. and compare it with the hospital 
 treatment rates for each specific race and ethnicity group.
 
-The chart showing the hosipital treatment rate among different race and 
+The chart showing the hospital treatment rate among different race and 
 ethnicity is displayed below.
-(People who do not have a hospital reocord and people who have a unknown race
+(People who do not have a hospital record and people who have a unknown race
 and ethnicity record are filtered out from the data.)
 ```{r}
 race_hosp_chart
 ```
 According to the chart, we can see that the over all hospital treatment among 
-all race and ethnicity is `r format(hosp_y * 100，digits = 1) `%, which is 
-rather low. This may be a sign indicating how compacked hospitals are and the 
+all race and ethnicity is `r format(hosp_y * 100, digits = 1)`%, which is 
+rather low. This may be a sign indicating how compacted hospitals are and the 
 inability of hospitals for taking in all patients in need. Among all race and
-ethnicity groups, black and non-hispanic people have a hospotal treatment rate 
+ethnicity groups, black and non-hispanic people have a hospital treatment rate 
 of `r format(hosp_y_max * 100, digits = 1 )`%, which is the highest among all 
 race and ethnicity groups. The race and ethnicity that have the lowest hospital
 treatment rate is Native Hawaiian/Other Pacific Islander and non-hispanic 
-people, `r format(hosp_y_min * 100, digits = 1 )`%. Possible explaination of 
+people, `r format(hosp_y_min * 100, digits = 1 )`%. Possible explanation of 
 these differences may be variation in ability to pay for hospital treatment, 
 severity of illness, and the willingness to seek hospital treatment among these
 groups.

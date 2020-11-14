@@ -4,9 +4,14 @@
 library(tidyverse)
 library(ggplot2)
 
-dataset <- read.csv("data/COVID-19_Case_Surveillance_Public_Use_Data.csv")
+data_path <- file.path(
+  getwd(),
+  "data",
+  "COVID-19_Case_Surveillance_Public_Use_Data.csv"
+)
+COVID <- read.csv(data_path)
 
-basic <- dataset %>%
+basic <- COVID %>%
   select(current_status, age_group, sex)
 
 confirmed_case <- basic %>%
@@ -51,3 +56,9 @@ least_age <- age_cases %>%
 least_percent <- age_cases %>%
   filter(percent == min(percent)) %>%
   pull(percent)
+
+# Style check
+library(lintr)
+library(styler)
+lint("script/chart_2.R")
+style_file("script/chart_2.R")

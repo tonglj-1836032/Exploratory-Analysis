@@ -8,16 +8,21 @@
 library("dplyr")
 
 # Loads a dataset.
-dataset <- read.csv("script/data/COVID-19_Case_Surveillance_Public_Use_Data.csv")
+data_path <- file.path(
+  getwd(),
+  "data",
+  "COVID-19_Case_Surveillance_Public_Use_Data.csv"
+)
+COVID <- read.csv(data_path)
 
 # Renames columns.
-colnames(dataset)[1] <- "cdc_report_date"
-colnames(dataset)[7] <- "race_ethnicity_combined"
-colnames(dataset)[8] <- "hospitalized"
-colnames(dataset)[10] <- "death"
+colnames(COVID)[1] <- "cdc_report_date"
+colnames(COVID)[7] <- "race_ethnicity_combined"
+colnames(COVID)[8] <- "hospitalized"
+colnames(COVID)[10] <- "death"
 
 # Selects relevant columns.
-relevant_dataset <- dataset %>%
+relevant_dataset <- COVID %>%
   select(
     cdc_report_date, 
     current_status, 

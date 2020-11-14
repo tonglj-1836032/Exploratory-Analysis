@@ -1,7 +1,14 @@
-covid <- read.csv("data/COVID-19_Case_Surveillance_Public_Use_Data.csv")
+data_path <- file.path(
+  getwd(),
+  "data",
+  "COVID-19_Case_Surveillance_Public_Use_Data.csv"
+)
+COVID <- read.csv(data_path)
+library(tidyverse)
+library(dplyr)
 
 # Organizing data
-covid_hosp <- covid %>%
+covid_hosp <- COVID %>%
   filter(hosp_yn != "Unknown") %>%
   filter(hosp_yn != "Missing") %>%
   select(Race.and.ethnicity..combined., hosp_yn)
@@ -18,10 +25,26 @@ hosp_by_race_sum <- covid_hosp %>%
   summarize(sum = n())
 
 hosp_race_rate <- left_join(hosp_by_race_y, hosp_by_race_sum,
-  by = "Race.and.ethnicity..combined."
+                            by = "Race.and.ethnicity..combined."
 ) %>%
   mutate(y_rate = sum_y / sum) %>%
   select(Race.and.ethnicity..combined., y_rate)
+
+basic <- COVID %>%
+  select(current_status, age_group, sex)
+
+confirmed_case <- basic %>%
+  filter(current_status == "Laboratory-confirmed case") %>%
+  filter(sex != "Missing") %>%
+  filter(sex != "NA") %>%
+  filter(sex != "Unknown") %>%
+  filter(age_group != "Unknown") %>%
+  filter(age_group != "NA")
+
+age_cases <- confirmed_case %>%
+  group_by(age_group) %>%
+  summarise(cases = n()) %>%
+  mutate(percent = cases / nrow(confirmed_case))
 
 # Summary List
 summary_info <- list()
@@ -41,66 +64,23 @@ summary_info$hosp_y <- covid_hosp %>%
   filter(hosp_yn == "Yes") %>%
   nrow() / nrow(covid_hosp)
 
-####chart_3
-
-
-covid_death <- COVID %>%
-  filter(death_yn != "Unknown" & death_yn != "Missing")
-  
-covid_death<-covid_death[,c("cdc_report_dt", "sex" ,"age_group","death_yn")]
-
-covid_death <- covid_death %>%
-  filter(sex != "Unknown" & sex != "Missing" )
-covid_death <- covid_death %>%
-  filter(age_group != "Unknown" & age_group != "Missing")
- 
-age_group=unique(as.character(covid_death$age_group)) 
-sex=unique(as.character(covid_death$sex)) 
-n=length(age_group)
-res=c()
-for(i in 1:n){
-ss=which(as.character(covid_death$age_group)==age_group[i])
-dd=covid_death[ss,]
-m=length(sex)
-rr=c()
-for(j in 1:m)
-{
-dm=length(which(as.character(dd$sex)==sex[j] & as.character(dd$death_yn)=="Yes"))*100/length(ss)
-re=c(sex[j],round(dm,2))
-rr=rbind(rr,re)
-}
-re=cbind(age_group[i],rr)
-res=rbind(res,re)
-}
-colnames(res)=c("Age_group","Sex","Death_yn")
-res=data.frame(res)
-
-
-#The highest mortality rate for male
-
-summary_info$max_M<- res %>%
-  filter(Sex == "Male") %>%
-  filter(Death_yn == max(Death_yn))  %>%
-  pull(Death_yn)
-#The age group with the highest mortality rate of male
-summary_info$max_M_A<- res %>%
-  filter(Sex == "Male") %>%
-  filter(Death_yn == max(Death_yn))  %>%
+##The most cases are found in this age group
+summary_info$most_age <- age_cases %>%
+  filter(percent == max(percent)) %>%
   pull(age_group)
 
-#The highest mortality rate for female
-summary_info$max_F<- res %>%
-  filter(Sex == "Fmale") %>%
-  filter(Death_yn == max(Death_yn))  %>%
-  pull(Death_yn)
+##The most confirmed age group takes up this percentage
+summary_info$most_percent <- age_cases %>%
+  filter(percent == max(percent)) %>%
+  pull(percent)
 
-
-#The age group with the highest mortality rate of female
-summary_info$max_F_A<- res %>%
-  filter(Sex == "Fmale") %>%
-  filter(Death_yn == max(Death_yn))  %>%
+##The most confirmed age group takes up this percentage
+summary_info$least_age <- age_cases %>%
+  filter(percent == min(percent)) %>%
   pull(age_group)
 
-# Style check
-lint("Summary Information.R")
-style_file("Summary Information.R")
+##The least confirmed age group takes up this percentage
+summary_info$least_percent <- age_cases %>%
+  filter(percent == min(percent)) %>%
+  pull(percent)
+

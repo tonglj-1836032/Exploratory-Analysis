@@ -21,8 +21,6 @@ library(dplyr)
 
 data_path <- file.path(
   getwd(),
-  "Exploratory-Analysis",
-  "script",
   "data",
   "COVID-19_Case_Surveillance_Public_Use_Data.csv"
   )
@@ -83,8 +81,3 @@ plot_line<-ggplot(data = res, aes(x = Age_group, y = Death_yn, group=Sex,color =
   labs(
     y = "Mortality rates (%)", x = " Age group"
   )
-
-
-
-
-
