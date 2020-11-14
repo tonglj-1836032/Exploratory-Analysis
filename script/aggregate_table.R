@@ -36,7 +36,12 @@ relevant_dataset <- COVID %>%
 # Sorts dataset in the order of date.
 relevant_dataset <- arrange(relevant_dataset, cdc_report_date)
 
-# Groups dataset by current_status.
-relevant_dataset <- relevant_dataset %>%
-  group_by(current_status)
+# Slices dataset.
+sliced_dataset <- relevant_dataset %>%
+  slice(1:10)
+
+# Calculates current status summary information.
+current_status_summary <- relevant_dataset %>%
+  group_by(current_status) %>%
+  summarize(num_current_status = n())
 
