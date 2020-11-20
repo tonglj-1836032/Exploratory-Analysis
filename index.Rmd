@@ -13,9 +13,10 @@ Thus, we decided to engage in this field and create a website that could help pe
 
 
 ## Summary Information
-```{r include = FALSE}
+```{r include = FALSE, echo = FALSE, message = FALSE, warning = FALSE}
 source("script/Summary Information.R")
 ```
+
 After looking at the data closely and generating aggregate summary of it, we 
 realized how much impact COVID-19 had made to our society. So many people from
 different ages groups and races are heavily affected by it. For example, hospital 
@@ -43,10 +44,11 @@ period of time.
 
 
 ## Table
-```{r include = FALSE}
+```{r include = FALSE, echo = FALSE, message = FALSE, warning = FALSE}
 source("script/aggregate_table.R")
 library(knitr)
 ```
+
 The original data was downloaded from [_U.S. Government's open data_](https://catalog.data.gov/dataset/covid-19-case-surveillance-public-use-data).
 The dataframe's column names 
 (cdc_report_dt, Race and ethnicity (combined), hosp_yn, death_yn) 
@@ -57,20 +59,25 @@ The dataframe was sorted in the ascending order of date.
 The dataframe was sliced to show first 10 rows.
 The table was included to show used dataset.
 The table reveals information such as column names that helps understand the dataset better.
-```{r}
+
+```{r echo = FALSE, message = FALSE, warning = FALSE}
 kable(sliced_dataset)
 ```
+
 The dataframe was grouped and summarized by current status.
 The table was included to show differences between laboratory confirmed/probable cases.
 The table reveals number of laboratory confirmed/probable cases.
-```{r}
+
+```{r echo = FALSE, message = FALSE, warning = FALSE}
 kable(current_status_summary)
 ```
 
+
 ## Chart 1
-```{r include = FALSE}
+```{r include = FALSE, echo = FALSE, message = FALSE, warning = FALSE}
 source("script/Chart_race_hosp.R")
 ```
+
 Due to the sudden mass out broke of the pandemic, hospital resources became 
 preciouses and not everyone had the opportunity to be treated by hospitals. We
 want see whether there is a difference in hospital treatment rate among people 
@@ -82,9 +89,11 @@ The chart showing the hospital treatment rate among different race and
 ethnicity is displayed below.
 (People who do not have a hospital record and people who have a unknown race
 and ethnicity record are filtered out from the data.)
-```{r}
+
+```{r echo = FALSE, message = FALSE, warning = FALSE}
 race_hosp_chart
 ```
+
 According to the chart, we can see that the over all hospital treatment among 
 all race and ethnicity is `r format(hosp_y * 100, digits = 1)`%, which is 
 rather low. This may be a sign indicating how compacted hospitals are and the 
@@ -101,9 +110,10 @@ groups.
 
 
 ## Chart 2
-```{r include = FALSE}
+```{r include = FALSE, echo = FALSE, message = FALSE, warning = FALSE}
 source("script/chart_2.R")
 ```
+
 Since so many people have been unfortunately confirmed to be the carrier of COVID-19, 
 the public went into panic at the beginning of this chaos. Numerous people are still 
 wondering what the age group of people COVID-19 normally targets at, thus we hope to 
@@ -112,7 +122,8 @@ group, informing the public an potential correlation between age and the possibi
 of getting COVID-19.
 
 Below is a chart showing the percentage of confirmed cases by age group and gender:
-```{r}
+
+```{r echo = FALSE, message = FALSE, warning = FALSE}
 age_plot
 ```
 
@@ -129,14 +140,16 @@ between the possibility of getting COVID-19 and the age of individuals.
 
 ## Chart 3
 
-```{r include = FALSE}
+```{r include = FALSE, echo = FALSE, message = FALSE, warning = FALSE}
 source("script/Chart_3.R")
 ```
+
 Covid-19 is getting very serious in the United States, but fortunately, the death rate for this pandemic
 is relatively lower than another serious pandemic. But what kind of group has a higher mortality rate? Is
 there any connection between gender and mortality rates or age and mortality rates? Thus, we would like to
 use this graph to find out how gender influences the mortality rates of people in each age group.
-```{r}
+
+```{r echo = FALSE, message = FALSE, warning = FALSE}
 plot_line
 ```
 
