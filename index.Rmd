@@ -94,7 +94,7 @@ and ethnicity record are filtered out from the data.)
 race_hosp_chart
 ```
 
-According to the chart, we can see that the over all hospital treatment among 
+<p>According to the chart, we can see that the over all hospital treatment among 
 all race and ethnicity is `r format(hosp_y * 100, digits = 1)`%, which is 
 rather low. This may be a sign indicating how compacted hospitals are and the 
 inability of hospitals for taking in all patients in need. Among all race and
@@ -105,7 +105,7 @@ treatment rate is Native Hawaiian/Other Pacific Islander and non-hispanic
 people, `r format(hosp_y_min * 100, digits = 1 )`%. Possible explanation of 
 these differences may be variation in ability to pay for hospital treatment, 
 severity of illness, and the willingness to seek hospital treatment among these
-groups.
+groups.</p>
 
 
 
