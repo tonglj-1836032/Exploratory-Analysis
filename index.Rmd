@@ -78,17 +78,17 @@ kable(current_status_summary)
 source("script/Chart_race_hosp.R")
 ```
 
-Due to the sudden mass out broke of the pandemic, hospital resources became 
+<p>Due to the sudden mass out broke of the pandemic, hospital resources became 
 preciouses and not everyone had the opportunity to be treated by hospitals. We
 want see whether there is a difference in hospital treatment rate among people 
 from different race and ethnicity groups by looking into the general hospital
 treatment rate of COVID-19 in the U.S. and compare it with the hospital 
-treatment rates for each specific race and ethnicity group.
+treatment rates for each specific race and ethnicity group.</p>
 
-The chart showing the hospital treatment rate among different race and 
+<p>The chart showing the hospital treatment rate among different race and 
 ethnicity is displayed below.
 (People who do not have a hospital record and people who have a unknown race
-and ethnicity record are filtered out from the data.)
+and ethnicity record are filtered out from the data.)</p>
 
 ```{r echo = FALSE, message = FALSE, warning = FALSE}
 race_hosp_chart
